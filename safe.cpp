@@ -56,7 +56,8 @@ void loop() {
       {
         tone(BUZZER, 208, 50);
         digitalWrite(GREEN, HIGH);
-        mode++;
+        mode++;                  // AK: 5 lines can be replaced with 1 line:     mode = (mode % 4) + 1;
+                                 // AK: variable mode, maybe you can think of better self-explanatory name.
         if (mode%5 == 0)
         {
           mode++;
@@ -70,7 +71,7 @@ void loop() {
       {
         digitalWrite(YELLOW, HIGH);
         tone(BUZZER, 208, 70);
-        if((k%4) == 3)
+        if((k%4) == 3)                 // Should be const. 
         {
           static int digitsCorrect = 0;
           for(int i = 0; i < 4; i++)
@@ -86,8 +87,8 @@ void loop() {
             alarm();
             tried = 0;
           }
-          if(digitsCorrect == 4){
-          digitalWrite(YELLOW, LOW);
+          if(digitsCorrect == 4){       // AK Bracket should be on the next line   . 
+          digitalWrite(YELLOW, LOW);   // AK this block should be indented to the right.
           tone(BUZZER, 31, 65);
           k++;
           Display.show("Open");
