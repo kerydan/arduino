@@ -1,12 +1,16 @@
 #include "Display.h"
 //These are the values that work for me
-const int CLOSED = 90;
-const int OPEN = 620;
-
-const int RED = 4;
-const int YELLOW = 7;
-const int GREEN = 5;   // AK: Add empty lines between logical groups of constants. 
-                       // AK: as improvement for future, enum Color (); can be used instead of constants. 
+enum lightness
+{
+  const int CLOSED = 90,
+  const int OPEN = 620
+}
+enum color
+{
+  RED = 4,
+  YELLOW = 7,
+  GREEN = 5   // AK: Add empty lines between logical groups of constants. 
+}            // AK: as improvement for future, enum Color (); can be used instead of constants. 
 const int BUZZER = 3;
 const int LDR_IN = 16;
 const int INPUT_KEY = 9;
@@ -17,7 +21,7 @@ const String CODE = "1234";
 void alarm();   // AK: separate functions bodies with 1 empty line
 void setup() {
   // put your setup code here, to run once:
-  pinMode(RED, OUTPUT);
+  pinMode(color::RED, OUTPUT);
   pinMode(GREEN, OUTPUT);
   pinMode(YELLOW, OUTPUT);
   pinMode(INPUT_KEY, INPUT_PULLUP);
@@ -127,7 +131,7 @@ void loop() {
     else{digitalWrite(YELLOW, LOW);}
   }
   
-  if (safeState >= OPEN)
+  if (safeState >= lightness::OPEN)
   {
   if(locked){alarm();}
   else{passed = false; pass = "----";}
